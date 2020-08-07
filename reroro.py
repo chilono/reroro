@@ -963,17 +963,6 @@ class reroro:
 		self.clickMouseAdb((1472, 280))
 		time.sleep(4)
 
-		# 等待确认进入室内或者线索交流结束
-		self.waitIsMatchTowTemplateEx(self.img_name_exchange_over, self.img_name_in_sitting_room)
-		time.sleep(4)
-
-		# 判断是否线索交流结束
-		result = self.isMatchTemplateEx(self.img_name_exchange_over)
-		if result[0]:
-			#self.clickMouseAdb((600, 50))
-			self.clickMouseAdb((120, 50))
-			time.sleep(4)
-			
 		# 确认进入室内
 		self.waitIsMatchTemplateEx(self.img_name_in_sitting_room)
 		time.sleep(4)
@@ -981,6 +970,13 @@ class reroro:
 		# 点击左下角
 		self.clickMouseAdb((325, 780))
 		time.sleep(4)
+		
+		# 判断是否线索交流结束
+		result = self.isMatchTemplateEx(self.img_name_exchange_over)
+		if result[0]:
+			#self.clickMouseAdb((600, 50))
+			self.clickMouseAdb((120, 50))
+			time.sleep(4)
 
 		# 领取线索
 		self.clickMouseAdb((1500, 230))		# 点击每日线索
