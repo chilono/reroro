@@ -1241,7 +1241,7 @@ class reroro:
 			while True:
 
 				# 是否有高资干员标签
-				result_high = self.isMatchTemplateEx(self.img_name_tag_high_senior_agent)
+				result_high = self.isMatchTemplateEx(self.img_name_tag_high_senior_agent, threshold=0.95)
 				# 如果有高资干员
 				if result_high[0]:
 					# 点击右下角关闭按钮，返回招募界面
