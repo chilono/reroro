@@ -15,6 +15,7 @@ sim1.setAdbDevice(r' -s 127.0.0.1:62026 ')    # 设置adbshell的地址端口
 import time
 from cv2 import cv2
 import numpy as np
+import sys
 import os
 import json
 import math
@@ -2923,5 +2924,5 @@ def test():
 #    fullRun(accounts_list['acc1'])
 
 if __name__ == "__main__":
-    # main(sys.argv[1:])
-    test()
+    main(sys.argv[1:])
+    # test()
