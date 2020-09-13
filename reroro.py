@@ -19,6 +19,7 @@ import sys
 import os
 import json
 import math
+import threading
 
 # ----------------------------------------------------------------
 # 全局变量
@@ -2692,6 +2693,68 @@ def fullRun(argv, credit_mod=True, infrast_mod=True, debugmod=False):
     return fight_over_count
 
 
+def threadRun(time_week,
+              time_hour,
+              time_ap,
+              hour_list_am,
+              accounts_list,
+              acc):
+    # 剿灭模式添加模块
+    if (time_week == '1') and (time_hour in hour_list_am):
+        # 如果是星期一的上午，添加剿灭作战
+        extermax_list = {1: 255, 2: 325, 3: 345}
+        dictemp = dict()
+        # 计算要添加多少次剿灭
+        math_temp = math.ceil(accounts_list[acc]['extermax']
+                              / extermax_list[accounts_list[acc]
+                              ['exterminate']])
+        dictemp['jm-'+str(accounts_list[acc]
+                          ['exterminate'])] = math_temp
+        dictemp.update(accounts_list[acc]['todo'])
+        accounts_list[acc]['todo'] = dictemp
+
+    # 将要进行的关卡写入level
+    accounts_list[acc]['level'] = accounts_list[acc]['levels'][
+        time_week][time_ap]
+    accounts_list[acc]['level'] = dict(
+        accounts_list[acc]['level'], **accounts_list[acc]['todo'])
+
+    # 因为现在全面开放，剔除功能暂时关闭
+    # 处理level,不符合星期的关卡被剔除
+    temp_acc_list = accounts_list[acc]['level'].copy()
+    for i_level in accounts_list[acc]['level']:
+        # 获取当天应当剔除的列表
+        level_period = level_period_list[time_week]
+        # 如果关卡在当天剔除列表中，则剔除
+        if i_level[:2] in level_period:
+            temp_acc_list.pop(i_level)
+        if i_level[:4] in level_period:
+            temp_acc_list.pop(i_level)
+    # 剔除完成，将剔除结果赋值给原字典
+    accounts_list[acc]['level'] = temp_acc_list
+
+    # 单线程开始运行模拟器
+    fight_over_count = fullRun(accounts_list[acc], debugmod=True)
+
+    # 将已完成的关卡在todo列表中减去
+    accounts_list[acc]['todo'] = dictSub(
+        accounts_list[acc]['todo'], fight_over_count)
+    accounts_list[acc]['over'] = fight_over_count
+    # thread_fullRun = threading.Thread(target=fullRun,
+    # args=(accounts_list[acc]))
+    # thread_fullRun.start()
+
+    # 将json配置重新写入
+    # 运行完一个帐号就写入一次，免得多个帐号中断影响记录
+    json_conf = json.dumps(accounts_list,
+                           ensure_ascii=False,
+                           indent=4)
+    json_file = open('config.json', 'w', encoding='utf-8')
+    print(json_conf)
+    json_file.write(json_conf)
+    json_file.close()
+
+
 def main(argv):
     # name： 设备名
     # device： adb的连接IP
@@ -2812,69 +2875,31 @@ def main(argv):
             if DEBUG_MOD:
                 print(json.dumps(accounts_list, ensure_ascii=False, indent=4))
             # 每个帐号循环
+            start_delay = 0
             for acc in accounts_list:
-                # 剿灭模式添加模块
-                if (time_week == '1') and (time_hour in hour_list_am):
-                    # 如果是星期一的上午，添加剿灭作战
-                    extermax_list = {1: 255, 2: 325, 3: 345}
-                    dictemp = dict()
-                    # 计算要添加多少次剿灭
-                    math_temp = math.ceil(accounts_list[acc]['extermax']
-                                          / extermax_list[accounts_list[acc]
-                                          ['exterminate']])
-                    dictemp['jm-'+str(accounts_list[acc]
-                                      ['exterminate'])] = math_temp
-                    dictemp.update(accounts_list[acc]['todo'])
-                    accounts_list[acc]['todo'] = dictemp
+                # threadRun(time_week,
+                #          time_hour,
+                #          time_ap,
+                #          hour_list_am,
+                #          accounts_list,
+                #          acc,
+                #          DEBUG_MOD)
+                time.sleep(start_delay)
+                thread_run = threading.Thread(
+                                target=threadRun,
+                                args=(time_week,
+                                      time_hour,
+                                      time_ap,
+                                      hour_list_am,
+                                      accounts_list,
+                                      acc))
+                thread_run.start()
+                start_delay = start_delay + 300
 
-                # 将要进行的关卡写入level
-                accounts_list[acc]['level'] = accounts_list[acc]['levels'][
-                    time_week][time_ap]
-                accounts_list[acc]['level'] = dict(
-                    accounts_list[acc]['level'], **accounts_list[acc]['todo'])
-
-                # 因为现在全面开放，剔除功能暂时关闭
-                # 处理level,不符合星期的关卡被剔除
-                temp_acc_list = accounts_list[acc]['level'].copy()
-                for i_level in accounts_list[acc]['level']:
-                    # 获取当天应当剔除的列表
-                    level_period = level_period_list[time_week]
-                    # 如果关卡在当天剔除列表中，则剔除
-                    if i_level[:2] in level_period:
-                        temp_acc_list.pop(i_level)
-                    if i_level[:4] in level_period:
-                        temp_acc_list.pop(i_level)
-                # 剔除完成，将剔除结果赋值给原字典
-                accounts_list[acc]['level'] = temp_acc_list
-
-                # 调试模式，打印处理过的level
-                if DEBUG_MOD:
-                    print(accounts_list[acc]['level'])
-
-                # 单线程开始运行模拟器
-                fight_over_count = fullRun(accounts_list[acc], debugmod=True)
-
-                # 将已完成的关卡在todo列表中减去
-                accounts_list[acc]['todo'] = dictSub(
-                    accounts_list[acc]['todo'], fight_over_count)
-                accounts_list[acc]['over'] = fight_over_count
-                # thread_fullRun = threading.Thread(target=fullRun,
-                # args=(accounts_list[acc]))
-                # thread_fullRun.start()
-
-                # 将json配置重新写入
-                # 运行完一个帐号就写入一次，免得多个帐号中断影响记录
-                json_conf = json.dumps(accounts_list,
-                                       ensure_ascii=False,
-                                       indent=4)
-                json_file = open('config.json', 'w', encoding='utf-8')
-                print(json_conf)
-                json_file.write(json_conf)
-                json_file.close()
-
-                # 等待间隔
-                # time.sleep(1800)
-                # time.sleep(600)
+            print('线程分发完毕')
+            # 等待间隔
+            # time.sleep(1800)
+            # time.sleep(600)
             # 停止1小时，等待下次
             # time.sleep(14400)
         time.sleep(600)
