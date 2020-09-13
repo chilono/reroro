@@ -1877,6 +1877,17 @@ class reroro:
                 result = self.isMatchTemplateEx(
                     self.img_name_fight_resource_purch)
                 self.clickMouseAdbCenter(result[1], result[2])
+        if level[:2] == 'ca':
+            # 技能书
+            result = self.isMatchTemplateEx('fight_resource_ca.png')
+            if result[0]:
+                self.clickMouseAdbCenter(result[1], result[2])
+            else:
+                self.swipeMouse(800, 450, 0, 450)
+                time.sleep(4)
+                result = self.isMatchTemplateEx(
+                    'fight_resource_ca.png')
+                self.clickMouseAdbCenter(result[1], result[2])
         time.sleep(2)
 
         # 关卡选择
