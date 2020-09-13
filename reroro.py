@@ -2619,7 +2619,7 @@ def fullRun(argv, credit_mod=True, infrast_mod=True, debugmod=False):
     # 等待开机时间
     time.sleep(100)
     # 隐藏模拟器
-    # hiddenSim()
+    hiddenSim(sim.window_name)
     # 启动游戏
     sim.startGame()
     # 确认登录
@@ -2905,17 +2905,20 @@ def main(argv):
         time.sleep(600)
 
 
-def hiddenSim():
+def hiddenSim(window_name):
     """隐藏模拟器的函数，使用pynput"""
-    from pynput.keyboard import Key, Controller
-    keyboard = Controller()
-    # ctrl+alt+x
-    keyboard.press(Key.ctrl_l)
-    keyboard.press(Key.alt_l)
-    keyboard.press('x')
-    keyboard.release('x')
-    keyboard.release(Key.alt_l)
-    keyboard.release(Key.ctrl_l)
+    # from pynput.keyboard import Key, Controller
+    # keyboard = Controller()
+    # # ctrl+alt+x
+    # keyboard.press(Key.ctrl_l)
+    # keyboard.press(Key.alt_l)
+    # keyboard.press('x')
+    # keyboard.release('x')
+    # keyboard.release(Key.alt_l)
+    # keyboard.release(Key.ctrl_l)
+    import win32gui
+    hwnd = win32gui.FindWindow(None, window_name)
+    win32gui.CloseWindow(hwnd)
 
 
 def test():
