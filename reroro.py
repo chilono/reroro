@@ -1533,6 +1533,80 @@ class reroro:
         # 没有招募完成按钮了，返回主页
         self.backHomePage()
 
+    def useReasonMixture(self):
+        """
+        disItemUse()下模块
+        使用理智合剂
+        """
+
+        # 合剂列表
+        mixture_list = [
+            (140, 318), (140, 555), (140, 792),
+            (330, 318), (330, 555), (330, 792)
+        ]
+        mixture_click_list = [
+            (160, 240), (160, 480), (160, 720),
+            (350, 240), (350, 480), (350, 720)
+        ]
+
+        if self.LOG_MOD:
+            self.writeLog('使用理智合剂')
+
+        # 判断消耗物品图片
+        result = self.waitIsMatchTemplateEx('item_consumables.png')
+        # 点击消耗物品选项
+        if result[0]:
+            self.clickMouseAdbCenter(result[1], result[2])
+            time.sleep(2)
+
+        # 判断各个位置的颜色
+        for i in range(0, 6):
+            while True:
+                result = self.isMatchColorScopeEx(((23, 163, 232),
+                                                  (27, 183, 252)),
+                                                  [[mixture_list[i][0],
+                                                    mixture_list[i][0]+80],
+                                                   [mixture_list[i][1],
+                                                    mixture_list[i][1]+30]])
+
+                if result:
+                    # 点击药剂
+                    self.clickMouseAdb((mixture_click_list[i][0],
+                                        mixture_click_list[i][1]))
+                    time.sleep(2)
+                    # 等待使用按钮
+                    result = self.waitIsMatchTemplateEx('item_use.png')
+                    self.clickMouseAdbCenter(result[1], result[2])
+                    time.sleep(2)
+                    # 等待确认按钮
+                    result = self.waitIsMatchTemplateEx('item_yes.png')
+                    self.clickMouseAdbCenter(result[1], result[2])
+                    time.sleep(2)
+                else:
+                    break
+
+    def disItemUse(self):
+        """
+        使用物品模块
+        """
+        if self.LOG_MOD:
+            self.writeLog('进入使用物品模块')
+
+        # 判断主页
+        if self.waitIsHomePage():
+            # 判断是否有即将过期物品
+            result = self.isMatchColorScopeEx(((23, 192, 192), (27, 218, 218)),
+                                              [[1485, 1565], [727, 750]])
+            if result:
+                # 进入仓库
+                self.clickMouseAdb((1500, 800))
+                time.sleep(2)
+                if self.LOG_MOD:
+                    self.writeLog('进入仓库')
+
+        # 使用理智合剂
+        self.useReasonMixture()
+
     def disFight(self, level, count, types='number', level_up_mod=False):
         """作战模块
         level 是关卡的号
@@ -2628,6 +2702,9 @@ def fullRun(argv, credit_mod=True, infrast_mod=True, debugmod=False):
     sim.startGame()
     # 确认登录
     sim.loginHomePage()
+
+    # 使用即将过期的理智合剂
+    sim.disItemUse()
 
     # 进行作战
     for i_level in argv['level']:
