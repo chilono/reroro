@@ -1604,8 +1604,11 @@ class reroro:
                 if self.LOG_MOD:
                     self.writeLog('进入仓库')
 
-        # 使用理智合剂
-        self.useReasonMixture()
+                # 使用理智合剂
+                self.useReasonMixture()
+
+                # 处理完毕，返回主页
+                self.backHomePage()
 
     def disFight(self, level, count, types='number', level_up_mod=False):
         """作战模块
