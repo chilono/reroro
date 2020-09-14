@@ -2403,10 +2403,10 @@ class reroro:
                 val.append((True, i[1], i[2]))
             return val
 
-    def waitIsMatchTemplateEx(self, img_name):
+    def waitIsMatchTemplateEx(self, img_name, rect=None, threshold=None):
         """等待匹配图片"""
         while True:
-            result = self.isMatchTemplateEx(img_name)
+            result = self.isMatchTemplateEx(img_name, rect, threshold)
             if result[0]:
                 return result
 
