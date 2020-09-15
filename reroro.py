@@ -1550,7 +1550,7 @@ class reroro:
         ]
 
         if self.LOG_MOD:
-            self.writeLog('使用理智合剂')
+            self.writeLog('使用理智合剂模块')
 
         # 判断消耗物品图片
         result = self.waitIsMatchTemplateEx('item_consumables.png')
@@ -1570,6 +1570,8 @@ class reroro:
                                                     mixture_list[i][1]+30]])
 
                 if result:
+                    if self.LOG_MOD:
+                        self.writeLog('使用理智合剂1支')
                     # 点击药剂
                     self.clickMouseAdb((mixture_click_list[i][0],
                                         mixture_click_list[i][1]))
