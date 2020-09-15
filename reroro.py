@@ -35,7 +35,7 @@ level_period_list = {
     '0': ['sk', 'pr-b'],
 }
 # 最大线程数
-thread_max = threading.Semaphore(2)
+thread_max = threading.BoundedSemaphore(2)
 
 # ----------------------------------------------------------------
 # 全局函数
@@ -2798,6 +2798,9 @@ def threadRun(time_week,
         #                      ['exterminate'])] = math_temp
         #    dictemp.update(accounts_list[acc]['todo'])
         #    accounts_list[acc]['todo'] = dictemp
+
+        # 打印启动消息
+        print('线程启动： ', acc)
 
         # 将要进行的关卡写入level
         accounts_list[acc]['level'] = accounts_list[acc]['levels'][
