@@ -2564,19 +2564,16 @@ class reroro:
                 if self.LOG_MOD:
                     self.writeLog('确认到APP图标')
                 return True
+            time.sleep(1)
 
     def isHomePage(self):
         """判断是否是主页"""
-        img_home_page_1 = cv2.imread(self.img_lib + self.img_name_home_page_1)
-        img_home_page_2 = cv2.imread(self.img_lib + self.img_name_home_page_2)
-        img_home_page_3 = cv2.imread(self.img_lib + self.img_name_home_page_3)
+        result1 = self.isMatchTemplateEx(self.img_name_home_page_1)[0]
+        result2 = self.isMatchTemplateEx(self.img_name_home_page_2)[0]
+        result3 = self.isMatchTemplateEx(self.img_name_home_page_3)[0]
 
         # 判断三个图片，如果都确认的话就是
-        if self.matchTemplateEx(
-                img_home_page_1
-        )[0] > self.match_threshold and self.matchTemplateEx(img_home_page_2)[
-                0] > self.match_threshold and self.matchTemplateEx(
-                    img_home_page_3)[0] > self.match_threshold:
+        if result1 and result2 and result3:
             return True
         else:
             return False
