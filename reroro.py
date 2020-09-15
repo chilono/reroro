@@ -2039,7 +2039,8 @@ class reroro:
             # 判断是否理智不够
             result1 = self.isMatchTemplateEx(self.img_name_reason_no_enough_1)
             result2 = self.isMatchTemplateEx(self.img_name_reason_no_enough_2)
-            if result1[0] or result2[0]:
+            result3 = self.isMatchTemplateEx('reason_no_enough_3.png')
+            if result1[0] or result2[0] or result3[0]:
                 # 理智不足，提前结束
                 self.clickMouseAdb((974, 721))
                 # 关卡计数器
