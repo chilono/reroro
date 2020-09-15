@@ -6,3 +6,5 @@ python.exe.lnk
 test.py
 log/
 temp/
+__pycache__/
+.gitignore
