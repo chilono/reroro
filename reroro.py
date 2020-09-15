@@ -2589,6 +2589,9 @@ class reroro:
             if self.isHomePage():
                 return True
 
+            # 增加延迟
+            time.sleep(1)
+
     def isNotice(self):
         """判断是否是公告"""
         # top:bottom left:right
@@ -2629,6 +2632,9 @@ class reroro:
 
             if self.isNotice() or self.isHomePage() or self.isGetItem():
                 return True
+
+            # 增加延迟
+            time.sleep(1)
 
     # 判断是否是获得物品
     def isGetItem(self):
