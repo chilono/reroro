@@ -18,8 +18,8 @@ import numpy as np
 import sys
 import os
 import json
-import math
 import threading
+import exterminate
 
 # ----------------------------------------------------------------
 # 全局变量
@@ -2913,6 +2913,9 @@ def main(argv):
     #                          'tier':2,
     #                          'infrast':[3, [1, 1, 1], [1, 1, 1]],
     #                        'level':'ls-1'})
+
+    # 向配置文件添加剿灭
+    exterminate.addExterminate('config.json')
 
     # 时间列表
     hour_list = [
