@@ -1074,6 +1074,19 @@ class reroro:
                 if self.waitIsDayCheck():
                     self.clickMouseAdb((1503, 95))
                     time.sleep(3)
+            # 中秋活动确定
+            if self.isMatchTemplateEx('zq-mrjl.png')[0]:
+                # 点击领取
+                self.clickMouseAdb((1404, 216))
+                time.sleep(3)
+                # 确认领取
+                result = self.isMatchTemplateEx('get_item.png')
+                self.clickMouseAdbCenter(result[1], result[2])
+                time.sleep(3)
+                # 关掉窗口
+                result = self.isMatchTemplateEx('zq-mrjl.png')
+                self.clickMouseAdb((1542, 100))
+                time.sleep(3)
             # 再次判断是否是公告
             if self.isNotice():
                 self.clickMouseAdb((1547, 71))
