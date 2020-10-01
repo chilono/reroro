@@ -1696,6 +1696,9 @@ class reroro:
             # ri活动特供
             # elif level[:2] == 'ri':
             #    succeed_count = self.fightRi(level, m_count)
+            # 踏寻往昔之风 - 限时活动
+            elif level[:2] == 'fa':
+                succeed_count = self.fightFa(level, m_count)
 
         # 如果升级了，再进行一次
         if level_up_mod:
