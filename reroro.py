@@ -1694,8 +1694,8 @@ class reroro:
                 # 判断为剿灭关卡
                 succeed_count = self.fightExter(int(level[3]) - 1, m_count)
             # ri活动特供
-            elif level[:2] == 'ri':
-                succeed_count = self.fightRi(level, m_count)
+            # elif level[:2] == 'ri':
+            #    succeed_count = self.fightRi(level, m_count)
 
         # 如果升级了，再进行一次
         if level_up_mod:
