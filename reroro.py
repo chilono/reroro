@@ -87,6 +87,8 @@ class reroro:
     match_threshold = 0.7
     # debug模式开关
     DEBUG_MOD = False
+    # 图片DEBUG模式
+    DEBUG_MOD_IMAGE = False
     # 日志模式
     LOG_MOD = False
     # 干员替换位置列表
@@ -629,7 +631,7 @@ class reroro:
         left_top = max_loc
         right_bottom = (left_top[0] + w, left_top[1] + h)
 
-        if self.DEBUG_MOD:
+        if self.DEBUG_MOD_IMAGE:
             print(max_val, left_top, right_bottom)
 
             max_perc = max_val * 100  # 计算百分比
@@ -675,7 +677,7 @@ class reroro:
         left_top = max_loc
         right_bottom = (left_top[0] + w, left_top[1] + h)
 
-        if self.DEBUG_MOD:
+        if self.DEBUG_MOD_IMAGE:
             print(max_val, left_top, right_bottom)
 
             max_perc = max_val * 100  # 计算百分比
@@ -725,7 +727,7 @@ class reroro:
             right_bottom = (pt[1] + w, pt[0] + h)
             val.append((result[pt[0]][pt[1]], (pt[1], pt[0]), right_bottom))
 
-        if self.DEBUG_MOD:
+        if self.DEBUG_MOD_IMAGE:
             print(val)
 
             for pos in val:
@@ -821,7 +823,7 @@ class reroro:
         img_scale = img_true / img_all
 
         # 调试模式
-        if self.DEBUG_MOD:
+        if self.DEBUG_MOD_IMAGE:
             print(img_scale)  # 命令行输出结算比例值的结果
 
             # 将比例值转换成百分比
@@ -2696,7 +2698,7 @@ def fullRun(argv, credit_mod=True, infrast_mod=True, debugmod=False):
     sim = reroro(argv['name'])
     sim.setAdbDevice(argv['device'])
     sim.cap_image_name = sim.window_name + '.png'
-    # sim.DEBUG_MOD  = True
+    sim.DEBUG_MOD = True
     sim.LOG_MOD = True
     # 记录战斗的变量，字典
     fight_over_count = dict()
