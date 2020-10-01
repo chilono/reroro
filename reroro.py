@@ -1372,12 +1372,18 @@ class reroro:
 #        self.clickMouseAdb((1470, 850))
 #        time.sleep(1)
 
-# 返回主页
+        # 返回主页
         if self.waitIsMenu():
             result = self.isMenu()
             self.clickMouseAdbCenter(result[1], result[2])
             time.sleep(2)
             self.clickMouseAdb((115, 353))
+            time.sleep(4)
+
+        # 如果有基建提示。点击
+        result = self.isMatchTemplateEx('infrastructure-exit.png')
+        if result[0]:
+            self.clickMouseAdbCenter(result[1], result[2])
 
     def calcTag(self):
         """计算标签，返回是否有匹配和点击位置数组"""
