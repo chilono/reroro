@@ -2654,7 +2654,12 @@ class reroro:
             if self.DEBUG_MOD:
                 print('等待公告和守夜')
 
-            if self.isNotice() or self.isHomePage() or self.isGetItem():
+            # 中秋活动添加
+            result1 = self.isNotice()
+            result2 = self.isHomePage()
+            result3 = self.isGetItem()
+            result4 = self.isMatchTemplateEx('zq-mrjl.png')[0]
+            if result1 or result2 or result3 or result4:
                 return True
 
             # 增加延迟
