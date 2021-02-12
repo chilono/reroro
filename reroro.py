@@ -1122,6 +1122,22 @@ class reroro:
                 result = self.isMatchTemplateEx('gnqd-mrdl.png')
                 self.clickMouseAdb((1542, 100))
                 time.sleep(3)
+            # 岁暮点雪限时每日登录奖励
+            if self.isMatchTemplateEx('suimudianxue_mrdl.png')[0]:
+                # 点击领取
+                self.clickMouseAdb((690,  366))
+                self.clickMouseAdb((920,  366))
+                self.clickMouseAdb((1150, 366))
+                self.clickMouseAdb((1380, 366))
+                time.sleep(3)
+                # 确认领取
+                result = self.isMatchTemplateEx('suimudianxue_get.png')
+                self.clickMouseAdbCenter(result[1], result[2])
+                time.sleep(3)
+                # 关掉窗口
+                result = self.isMatchTemplateEx('suimudianxue_mrdl.png')
+                self.clickMouseAdb((1542, 127))
+                time.sleep(3)
             # # 再次判断是否是公告
             # if self.isNotice():
             #     self.clickMouseAdb((1547, 71))
