@@ -1756,6 +1756,18 @@ class reroro:
             # 玛莉娅·临光 MN - 限时活动
             elif level[:2] == 'mn':
                 succeed_count = self.fightMn(level, m_count)
+            # # 踏寻往昔之风 - 限时活动
+            # elif level[:2] == 'fa':
+            #     succeed_count = self.fightFa(level, m_count)
+            # # 骑兵与猎人 - 限时活动
+            # elif level[:2] == 'gt':
+            #    succeed_count = self.fightGt(level, m_count)
+            # # 玛莉娅·临光 MN - 限时活动
+            # elif level[:2] == 'mn':
+            #     succeed_count = self.fightMn(level, m_count)
+            # 孤岛风云 MB - 限时活动
+            # elif level[:2] == 'mb':
+            #    succeed_count = self.fightMb(level, m_count)
 
         # 如果升级了，再进行一次
         if level_up_mod:
