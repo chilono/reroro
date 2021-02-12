@@ -2389,7 +2389,8 @@ class reroro:
         """剿灭作战模块
         0: 切尔诺伯格
         1: 龙门外环
-        2: 龙门市区"""
+        2: 龙门市区
+        3: 大骑士领郊外"""
 
         # 从作战界面跳转到剿灭界面
         result = self.isMatchTemplateEx(self.img_name_fight_exter)
@@ -2398,7 +2399,43 @@ class reroro:
         time.sleep(2)
 
         # 选择剿灭作战
-        self.clickMouseAdb(self.fight_exter_list[number])
+        # self.clickMouseAdb(self.fight_exter_list[number])
+        # 判断是否进入剿灭
+        self.waitIsMatchTemplateEx('exter_in_main.png', ((0, 550), (700, 900)))
+        # 如果是0到2
+        if number in [0, 1, 2]:
+            # 向左滑动
+            # self.swipeMouse(800, 450, 0, 450, 10000)
+            time.sleep(4)
+            # 乌萨斯
+            if number in [0]:
+                # 点乌萨斯
+                self.clickMouseAdb((890, 527))
+                time.sleep(4)
+                # 点切
+                self.clickMouseAdb((443, 426))
+                time.sleep(4)
+            # 炎国
+            elif number in [1, 2]:
+                # 点炎国
+                self.clickMouseAdb((1245, 696))
+                time.sleep(4)
+                # 龙外
+                if number in [1]:
+                    self.clickMouseAdb((596, 575))
+                    time.sleep(4)
+                # 龙市区
+                if number in [2]:
+                    self.clickMouseAdb((1000, 317))
+                    time.sleep(4)
+        # 卡西米尔
+        elif number in [3]:
+            # 点卡西米尔
+            self.clickMouseAdb((837, 479))
+            time.sleep(4)
+            # 大骑士领郊外
+            self.clickMouseAdb((646, 465))
+            time.sleep(4)
         time.sleep(2)
         # 进行剿灭作战
         succeed_count = self.agencyFight(count, True)
@@ -2556,7 +2593,8 @@ class reroro:
 
             # 剿灭作战匹配
             if exter:
-                result = self.waitIsMatchTemplateEx(self.img_name_exter_over)
+                result = self.waitIsMatchTemplateEx(self.img_name_exter_over,
+                                                    interval=10)
                 # 日志模式
                 if self.LOG_MOD:
                     self.capLogImage()
@@ -2914,12 +2952,14 @@ class reroro:
                 val.append((True, i[1], i[2]))
             return val
 
-    def waitIsMatchTemplateEx(self, img_name, rect=None, threshold=None):
+    def waitIsMatchTemplateEx(self, img_name, rect=None,
+                              threshold=None, interval=1):
         """等待匹配图片"""
         while True:
             result = self.isMatchTemplateEx(img_name, rect, threshold)
             if result[0]:
                 return result
+            time.sleep(interval)
 
     def waitIsMatchTowTemplateEx(self, img_name1, img_name2):
         """双重等待图片匹配"""
