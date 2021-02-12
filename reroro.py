@@ -1600,7 +1600,8 @@ class reroro:
                     if self.LOG_MOD:
                         self.capLogImage()
                     # 如果是支援机械 调整时间
-                    zhiyuan_result = self.isMatchTemplateEx('tag_support_mechanical.png')
+                    zhiyuan_result = self.isMatchTemplateEx(
+                        'tag_support_mechanical.png')
                     if zhiyuan_result[0]:
                         for i in range(0, 9):
                             self.clickMouseAdb((561, 369))
