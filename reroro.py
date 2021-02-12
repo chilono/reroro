@@ -1113,21 +1113,37 @@ class reroro:
             #     self.clickMouseAdb((1542, 100))
             #     time.sleep(3)
             # 感恩庆典每日登录奖励
-            if self.isMatchTemplateEx('gnqd-mrdl.png')[0]:
-                # 点击领取
-                self.clickMouseAdb((1404, 250))
-                self.clickMouseAdb((1404, 350))
-                self.clickMouseAdb((1404, 516))
-                self.clickMouseAdb((1404, 679))
-                time.sleep(3)
-                # 确认领取
-                result = self.isMatchTemplateEx('get_item.png')
-                self.clickMouseAdbCenter(result[1], result[2])
-                time.sleep(3)
-                # 关掉窗口
-                result = self.isMatchTemplateEx('gnqd-mrdl.png')
-                self.clickMouseAdb((1542, 100))
-                time.sleep(3)
+            # if self.isMatchTemplateEx('gnqd-mrdl.png')[0]:
+            #     # 点击领取
+            #     self.clickMouseAdb((1404, 250))
+            #     self.clickMouseAdb((1404, 350))
+            #     self.clickMouseAdb((1404, 516))
+            #     self.clickMouseAdb((1404, 679))
+            #     time.sleep(3)
+            #     # 确认领取
+            #     result = self.isMatchTemplateEx('get_item.png')
+            #     self.clickMouseAdbCenter(result[1], result[2])
+            #     time.sleep(3)
+            #     # 关掉窗口
+            #     result = self.isMatchTemplateEx('gnqd-mrdl.png')
+            #     self.clickMouseAdb((1542, 100))
+            #     time.sleep(3)
+            # 跨年限时每日登录奖励
+            # if self.isMatchTemplateEx('knxs-mrdl.png')[0]:
+            #     # 点击领取
+            #     self.clickMouseAdb((1404, 250))
+            #     self.clickMouseAdb((1404, 350))
+            #     self.clickMouseAdb((1404, 516))
+            #     self.clickMouseAdb((1404, 679))
+            #     time.sleep(3)
+            #     # 确认领取
+            #     result = self.isMatchTemplateEx('get_item.png')
+            #     self.clickMouseAdbCenter(result[1], result[2])
+            #     time.sleep(3)
+            #     # 关掉窗口
+            #     result = self.isMatchTemplateEx('knxs-mrdl.png')
+            #     self.clickMouseAdb((1542, 100))
+            #     time.sleep(3)
             # 岁暮点雪限时每日登录奖励
             if self.isMatchTemplateEx('suimudianxue_mrdl.png')[0]:
                 # 点击领取
@@ -1759,15 +1775,6 @@ class reroro:
             # ri活动特供
             # elif level[:2] == 'ri':
             #    succeed_count = self.fightRi(level, m_count)
-            # 踏寻往昔之风 - 限时活动
-            elif level[:2] == 'fa':
-                succeed_count = self.fightFa(level, m_count)
-            # 骑兵与猎人 - 限时活动
-            elif level[:2] == 'gt':
-                succeed_count = self.fightGt(level, m_count)
-            # 玛莉娅·临光 MN - 限时活动
-            elif level[:2] == 'mn':
-                succeed_count = self.fightMn(level, m_count)
             # # 踏寻往昔之风 - 限时活动
             # elif level[:2] == 'fa':
             #     succeed_count = self.fightFa(level, m_count)
