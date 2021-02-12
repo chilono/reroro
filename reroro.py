@@ -20,6 +20,7 @@ import os
 import json
 import threading
 import exterminate
+import random
 
 # ----------------------------------------------------------------
 # 全局变量
@@ -3119,10 +3120,12 @@ def fullRun(argv, credit_mod=True, infrast_mod=True, debugmod=False):
     # 记录战斗的变量，字典
     fight_over_count = dict()
 
+    # 等待模拟器启动时间
+    time.sleep(random.randint(0, 120))
     # 启动模拟器
     sim.launchSim()
     # 等待开机时间
-    time.sleep(100)
+    time.sleep(random.randint(80, 200))
     # 隐藏模拟器
     hiddenSim(sim.window_name)
     # 启动游戏
