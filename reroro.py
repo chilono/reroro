@@ -490,6 +490,12 @@ class reroro:
         ['tag_warlock_agent.png', 'tag_carry.png',
          'tag_slow_down.png'],                           # 术士 输出 减速    夜魔
         # 特殊标签 支援机械 小车
+        ['tag_support_mechanical.png',
+         'tag_special_agent.png'],                       # 支援机械 特种      爆炸小车
+        ['tag_support_mechanical.png',
+         'tag_medical_agent.png'],                       # 支援机械 医疗      医疗小车
+        ['tag_support_mechanical.png',
+         'tag_guards_agent.png'],                        # 支援机械 近卫      近卫小车
         ['tag_support_mechanical.png'],                  # 支援机械          小车
         # 四星干员
         ['tag_weaken.png'],                              # 削弱            夜烟 流行
@@ -1555,6 +1561,12 @@ class reroro:
                     # 如果是日志模式，截取图片保存词条
                     if self.LOG_MOD:
                         self.capLogImage()
+                    # 如果是支援机械 调整时间
+                    zhiyuan_result = self.isMatchTemplateEx('tag_support_mechanical.png')
+                    if zhiyuan_result[0]:
+                        for i in range(0, 9):
+                            self.clickMouseAdb((561, 369))
+                            time.sleep(0.1)
                     # 点击招募按钮
                     self.clickMouseAdb((1219, 728))
                     time.sleep(4)
