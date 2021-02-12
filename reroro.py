@@ -2052,6 +2052,83 @@ class reroro:
         # 返回成功作战次数
         return succeed_count
 
+    # 孤岛风云 MB - 限时活动
+    def fightMb(self, level, count):
+        """
+        mb活动特供
+        孤岛风云
+        """
+        """
+        mb-main.png
+        """
+        # 寻找作战界面内活动图标
+        result = self.waitIsMatchTemplateEx('mb-main.png')
+        # 点击活动图标，进入活动
+        self.clickMouseAdbCenter(result[1], result[2])
+
+        # 点击越狱计划
+        result = self.waitIsMatchTemplateEx('mb-escape-plan.png')
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(5)
+
+        # 活动关卡列表
+        fa_list = [
+            'mb-1',
+            'mb-2',
+            'mb-3',
+            'mb-4',
+            'mb-5',
+            'mb-6',
+            'mb-7',
+            'mb-8'
+        ]
+
+        # 寻找当前关卡图
+        result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+        # 获取关卡list
+        m_level_list = fa_list
+        # 判断是否找到了关卡图
+        while not result[0]:
+            # 没有找到关卡图，寻找其他锚点图
+            for i_level in m_level_list:
+                # 判断锚点图
+                result_mao = self.isMatchTemplateEx(i_level + '.png',
+                                                    threshold=0.96)
+                # 是否找到锚点图
+                if result_mao[0]:
+                    # 找到锚点图，进行位置判断
+                    if fa_list.index(
+                            i_level) > fa_list.index(
+                                level):
+                        # 找到的锚点图大于目标图,向右拉，往左移动
+                        self.swipeMouse(800, 450, 1400, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[:fa_list.index(i_level)]
+                        # 反转列表方便减少时间
+                        m_level_list.reverse()
+                    elif fa_list.index(
+                            i_level) < fa_list.index(
+                                level):
+                        # 如果小于，向左拉，往右移动
+                        self.swipeMouse(800, 450, 200, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[
+                            fa_list.index(i_level):]
+                    break
+
+            # 滑动结束，再次判断目标图片
+            result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+
+        # 寻找关卡结束，找到目标关卡图，点击
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(3)
+
+        # 进入作战
+        succeed_count = self.agencyFight(count)
+
+        # 返回成功作战次数
+        return succeed_count
+
     def fightMain(self, level, count):
         """主线关卡模块"""
 
