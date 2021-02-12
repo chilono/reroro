@@ -2762,6 +2762,12 @@ class reroro:
         self.clickMouseAdb((1470, 850))
         time.sleep(1)
 
+        # 如果有异格干员处理问题，点击确认
+        result = self.isMatchTemplateEx('jijian_paiban_genghuan.png')
+        if result[0]:
+            self.clickMouseAdbCenter(result[1], result[2])
+            time.sleep(2)
+
     def disDorm(self, pos=(840, 800)):
         """处理宿舍"""
         self.clickMouseAdb(pos)
