@@ -2937,6 +2937,12 @@ class reroro:
         self.clickMouseAdb((1470, 850))
         time.sleep(1)
 
+        # 如果有异格干员处理问题，点击确认
+        result = self.isMatchTemplateEx('jijian_paiban_genghuan.png')
+        if result[0]:
+            self.clickMouseAdbCenter(result[1], result[2])
+            time.sleep(2)
+
     def isMatchTemplate(self, img, template_name, rect=None, threshold=None):
         """判断图片匹配，返回是否匹配，以及位置
         img 匹配源大图片
