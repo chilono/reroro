@@ -1864,8 +1864,8 @@ class reroro:
             # elif level[:2] == 'mb':
             #    succeed_count = self.fightMb(level, m_count)
             # 画中人 WR - 限时活动
-            elif level[:2] == 'wr':
-                succeed_count = self.fightWr(level, m_count)
+            # elif level[:2] == 'wr':
+            #     succeed_count = self.fightWr(level, m_count)
 
         # 如果升级了，再进行一次
         if level_up_mod:
