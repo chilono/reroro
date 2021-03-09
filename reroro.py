@@ -1215,6 +1215,26 @@ class reroro:
             #     result = self.isMatchTemplateEx('xingyunqiang_weixuanze.png')
             #     self.clickMouseAdb((1542, 100))
             #     time.sleep(3)
+            # 彩虹六号限时每日登录奖励
+            if self.isMatchTemplateEx('r6-mrqd.png')[0]:
+                # 点击领取
+                self.clickMouseAdb((690,  366))
+                self.clickMouseAdb((920,  366))
+                self.clickMouseAdb((1150, 366))
+                self.clickMouseAdb((1380, 366))
+                self.clickMouseAdb((790,  366))
+                self.clickMouseAdb((1020, 366))
+                self.clickMouseAdb((1250, 366))
+                self.clickMouseAdb((1480, 366))
+                time.sleep(3)
+                # 确认领取
+                result = self.isMatchTemplateEx('suimudianxue_get.png')
+                self.clickMouseAdbCenter(result[1], result[2])
+                time.sleep(3)
+                # 关掉窗口
+                result = self.isMatchTemplateEx('r6-mrqd.png')
+                self.clickMouseAdb((1542, 127))
+                time.sleep(3)
             # # 再次判断是否是公告
             # if self.isNotice():
             #     self.clickMouseAdb((1547, 71))
