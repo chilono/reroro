@@ -1866,6 +1866,9 @@ class reroro:
             # 画中人 WR - 限时活动
             # elif level[:2] == 'wr':
             #     succeed_count = self.fightWr(level, m_count)
+            # 源石尘行动 OD - 限时活动
+            elif level[:2] == 'od':
+                succeed_count = self.fightOd(level, m_count)
 
         # 如果升级了，再进行一次
         if level_up_mod:
@@ -2287,6 +2290,75 @@ class reroro:
             'wr-9',
             'wr-10',
             'wr-st-3'
+        ]
+
+        # 寻找当前关卡图
+        result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+        # 获取关卡list
+        m_level_list = fa_list
+        # 判断是否找到了关卡图
+        while not result[0]:
+            # 没有找到关卡图，寻找其他锚点图
+            for i_level in m_level_list:
+                # 判断锚点图
+                result_mao = self.isMatchTemplateEx(i_level + '.png',
+                                                    threshold=0.96)
+                # 是否找到锚点图
+                if result_mao[0]:
+                    # 找到锚点图，进行位置判断
+                    if fa_list.index(
+                            i_level) > fa_list.index(
+                                level):
+                        # 找到的锚点图大于目标图,向右拉，往左移动
+                        self.swipeMouse(800, 450, 1400, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[:fa_list.index(i_level)]
+                        # 反转列表方便减少时间
+                        m_level_list.reverse()
+                    elif fa_list.index(
+                            i_level) < fa_list.index(
+                                level):
+                        # 如果小于，向左拉，往右移动
+                        self.swipeMouse(800, 450, 200, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[
+                            fa_list.index(i_level):]
+                    break
+
+            # 滑动结束，再次判断目标图片
+            result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+
+        # 寻找关卡结束，找到目标关卡图，点击
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(3)
+
+        # 进入作战
+        succeed_count = self.agencyFight(count)
+
+        # 返回成功作战次数
+        return succeed_count
+
+    # 彩虹六号联动活动 源石尘行动 OD - 限时活动
+    def fightOd(self, level, count):
+        """
+        od活动特供
+        源石尘行动
+        """
+        # 寻找作战界面内活动图标
+        result = self.waitIsMatchTemplateEx('od-main.png')
+        # 点击活动图标，进入活动
+        self.clickMouseAdbCenter(result[1], result[2])
+
+        # 点击行动记录
+        result = self.waitIsMatchTemplateEx('od-task-record.png')
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(5)
+
+        # 活动关卡列表
+        fa_list = [
+            'od-st-1',
+            'od-tr-1',
+            'od-1'
         ]
 
         # 寻找当前关卡图
