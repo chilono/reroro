@@ -2358,7 +2358,16 @@ class reroro:
         fa_list = [
             'od-st-1',
             'od-tr-1',
-            'od-1'
+            'od-1',
+            'od-2',
+            'od-3',
+            'od-4',
+            'od-5',
+            'od-6',
+            'od-st-2',
+            'od-7',
+            'od-8',
+            'od-st-3'
         ]
 
         # 寻找当前关卡图
