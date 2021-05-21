@@ -3777,7 +3777,7 @@ def threadRun(time_week,
             # 如果关卡在当天剔除列表中，则剔除
             if i_level[:2] in level_period:
                 temp_acc_list.pop(i_level)
-            if i_level[:4] in level_period:
+            elif i_level[:4] in level_period:
                 temp_acc_list.pop(i_level)
         # 剔除完成，将剔除结果赋值给原字典
         accounts_list[acc]['level'] = temp_acc_list
