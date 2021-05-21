@@ -75,9 +75,9 @@ class reroro:
     # 窗口名
     window_name = ''
     # 模拟器的adb程序路径
-    nox_adb_path = r'V:\RunLib\Nox\Nox\bin\nox_adb.exe '
+    nox_adb_path = r'D:\Forest\nox_sim\Nox\bin\nox_adb.exe '
     # 模拟器命令行工具
-    nox_con_path = r'V:\RunLib\Nox\Nox\bin\NoxConsole.exe '
+    nox_con_path = r'D:\Forest\nox_sim\Nox\bin\NoxConsole.exe '
     # 模拟器的shell地址和端口
     nox_adb_shell = r' -s 127.0.0.1:62026 '
     # 应用包名
