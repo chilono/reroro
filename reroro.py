@@ -1615,9 +1615,16 @@ class reroro:
             time.sleep(4)
 
             # 点满招募时长
-            for i in range(0, 9):
-                self.clickMouseAdb((566, 186))
-                time.sleep(0.1)
+            #for i in range(0, 1):
+            #    self.clickMouseAdb((560, 370))
+            #    time.sleep(0.1)
+            # 点满招募时长
+            while True:
+                if self.isMatchTemplateEx('Recruit-09.png', threshold=0.95, rect=[[450,900], [200, 350]])[0]:
+                    break
+                time.sleep(1)
+                self.clickMouseAdb((560, 370))
+
 
             # 如果是日志模式，截取图片保存词条
             if self.LOG_MOD:
@@ -1660,9 +1667,11 @@ class reroro:
                     zhiyuan_result = self.isMatchTemplateEx(
                         'tag_support_mechanical.png')
                     if zhiyuan_result[0]:
-                        for i in range(0, 9):
-                            self.clickMouseAdb((561, 369))
-                            time.sleep(0.1)
+                        while True:
+                            self.clickMouseAdb((560, 370))
+                            time.sleep(1)
+                            if self.isMatchTemplateEx('Recruit-01.png', threshold=0.95, rect=[[450,900], [200, 350]])[0]:
+                                break
                     # 点击招募按钮
                     self.clickMouseAdb((1219, 728))
                     time.sleep(4)
@@ -1681,9 +1690,11 @@ class reroro:
                     self.clickMouseAdbCenter(result[1], result[2])
                     time.sleep(4)
                     # 点满招募时长
-                    for i in range(0, 9):
-                        self.clickMouseAdb((566, 186))
-                        time.sleep(0.1)
+                    while True:
+                        if self.isMatchTemplateEx('Recruit-09.png', threshold=0.95, rect=[[450,900], [200, 350]])[0]:
+                            break
+                        time.sleep(1)
+                        self.clickMouseAdb((560, 370))
                     # 进行日志截图
                     if self.LOG_MOD:
                         self.capLogImage()
