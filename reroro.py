@@ -1068,7 +1068,8 @@ class reroro:
             self.capLogImage()
             self.writeLog('启动明日方舟APP')
         # 执行命令
-        os.system(command)
+        # os.system(command)
+        self.clickMouseAdb((1382, 273))
 
     # 开始游戏
     # 中间下面那个黄色按钮
