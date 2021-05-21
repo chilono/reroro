@@ -1882,8 +1882,13 @@ class reroro:
             # elif level[:2] == 'wr':
             #     succeed_count = self.fightWr(level, m_count)
             # 源石尘行动 OD - 限时活动
-            elif level[:2] == 'od':
-                succeed_count = self.fightOd(level, m_count)
+            # elif level[:2] == 'od':
+            #     succeed_count = self.fightOd(level, m_count)
+            # 生于黑夜 复刻 DM - 限时活动
+            # elif level[:2] == 'dm':
+            #     succeed_count = self.fightDm(level, m_count)
+            # elif level[:2] == 'sv':
+            #     succeed_count = self.fightSv(level, m_count)
 
         # 如果升级了，再进行一次
         if level_up_mod:
@@ -2431,37 +2436,252 @@ class reroro:
         # 返回成功作战次数
         return succeed_count
 
+    # 生于黑夜 复刻 OD - 限时活动
+    def fightDm(self, level, count):
+        """
+        dm活动特供
+        生于黑夜 复刻
+        """
+        # 寻找作战界面内活动图标
+        result = self.waitIsMatchTemplateEx('dm-main.png')
+        # 点击活动图标，进入活动
+        self.clickMouseAdbCenter(result[1], result[2])
+
+        # 点击阵中往事
+        result = self.waitIsMatchTemplateEx('dm-zzws.png')
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(5)
+
+        # 活动关卡列表
+        fa_list = [
+            'dm-6',
+            'dm-7'
+        ]
+
+        # 寻找当前关卡图
+        result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+        # 获取关卡list
+        m_level_list = fa_list
+        # 判断是否找到了关卡图
+        while not result[0]:
+            # 没有找到关卡图，寻找其他锚点图
+            for i_level in m_level_list:
+                # 判断锚点图
+                result_mao = self.isMatchTemplateEx(i_level + '.png',
+                                                    threshold=0.96)
+                # 是否找到锚点图
+                if result_mao[0]:
+                    # 找到锚点图，进行位置判断
+                    if fa_list.index(
+                            i_level) > fa_list.index(
+                                level):
+                        # 找到的锚点图大于目标图,向右拉，往左移动
+                        self.swipeMouse(800, 450, 1400, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[:fa_list.index(i_level)]
+                        # 反转列表方便减少时间
+                        m_level_list.reverse()
+                    elif fa_list.index(
+                            i_level) < fa_list.index(
+                                level):
+                        # 如果小于，向左拉，往右移动
+                        self.swipeMouse(800, 450, 200, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[
+                            fa_list.index(i_level):]
+                    break
+
+            # 滑动结束，再次判断目标图片
+            result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+
+        # 寻找关卡结束，找到目标关卡图，点击
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(3)
+
+        # 进入作战
+        succeed_count = self.agencyFight(count)
+
+        # 返回成功作战次数
+        return succeed_count
+
+    # 遗尘慢步 WD - 限时活动
+    def fightWd(self, level, count):
+        """
+        wd活动特供
+        遗尘漫步
+        """
+        # 寻找作战界面内活动图标
+        result = self.waitIsMatchTemplateEx('wd-main.png')
+        # 点击活动图标，进入活动
+        self.clickMouseAdbCenter(result[1], result[2])
+
+        # 点击阵中往事
+        result = self.waitIsMatchTemplateEx('wd-mmdx.png')
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(5)
+
+        # 活动关卡列表
+        fa_list = [
+            'wd-8'
+        ]
+
+        # 寻找当前关卡图
+        result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+        # 获取关卡list
+        m_level_list = fa_list
+        # 判断是否找到了关卡图
+        while not result[0]:
+            # 没有找到关卡图，寻找其他锚点图
+            for i_level in m_level_list:
+                # 判断锚点图
+                result_mao = self.isMatchTemplateEx(i_level + '.png',
+                                                    threshold=0.96)
+                # 是否找到锚点图
+                if result_mao[0]:
+                    # 找到锚点图，进行位置判断
+                    if fa_list.index(
+                            i_level) > fa_list.index(
+                                level):
+                        # 找到的锚点图大于目标图,向右拉，往左移动
+                        self.swipeMouse(800, 450, 1400, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[:fa_list.index(i_level)]
+                        # 反转列表方便减少时间
+                        m_level_list.reverse()
+                    elif fa_list.index(
+                            i_level) < fa_list.index(
+                                level):
+                        # 如果小于，向左拉，往右移动
+                        self.swipeMouse(800, 450, 200, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[
+                            fa_list.index(i_level):]
+                    break
+
+            # 滑动结束，再次判断目标图片
+            result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+
+        # 寻找关卡结束，找到目标关卡图，点击
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(3)
+
+        # 进入作战
+        succeed_count = self.agencyFight(count)
+
+        # 返回成功作战次数
+        return succeed_count
+    
+    # 覆潮之下 SV - 限时活动
+    def fightSv(self, level, count):
+        """
+        sv活动特供
+        覆潮之下
+        """
+        # 寻找作战界面内活动图标
+        result = self.waitIsMatchTemplateEx('sv-main.png')
+        # 点击活动图标，进入活动
+        self.clickMouseAdbCenter(result[1], result[2])
+
+        # 点击阵中往事
+        result = self.waitIsMatchTemplateEx('sv-hbyf.png')
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(5)
+
+        # 活动关卡列表
+        fa_list = [
+            'sv-8',
+            'sv-9'
+        ]
+
+        # 寻找当前关卡图
+        result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+        # 获取关卡list
+        m_level_list = fa_list
+        # 判断是否找到了关卡图
+        while not result[0]:
+            # 没有找到关卡图，寻找其他锚点图
+            for i_level in m_level_list:
+                # 判断锚点图
+                result_mao = self.isMatchTemplateEx(i_level + '.png',
+                                                    threshold=0.96)
+                # 是否找到锚点图
+                if result_mao[0]:
+                    # 找到锚点图，进行位置判断
+                    if fa_list.index(
+                            i_level) > fa_list.index(
+                                level):
+                        # 找到的锚点图大于目标图,向右拉，往左移动
+                        self.swipeMouse(800, 450, 1400, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[:fa_list.index(i_level)]
+                        # 反转列表方便减少时间
+                        m_level_list.reverse()
+                    elif fa_list.index(
+                            i_level) < fa_list.index(
+                                level):
+                        # 如果小于，向左拉，往右移动
+                        self.swipeMouse(800, 450, 200, 450, 2000)
+                        # 削减关卡列表，减少判断时间
+                        m_level_list = fa_list[
+                            fa_list.index(i_level):]
+                    break
+
+            # 滑动结束，再次判断目标图片
+            result = self.isMatchTemplateEx(level + '.png', threshold=0.96)
+
+        # 寻找关卡结束，找到目标关卡图，点击
+        self.clickMouseAdbCenter(result[1], result[2])
+        time.sleep(3)
+
+        # 进入作战
+        succeed_count = self.agencyFight(count)
+
+        # 返回成功作战次数
+        return succeed_count
+
     def fightMain(self, level, count):
         """主线关卡模块"""
 
+        # 进入主题曲
+        result = self.isMatchTemplateEx('theme_music.png',
+                                        rect=[[284, 390], [790, 880]])
+        self.clickMouseAdb((338, 835))
+
         # 判断当前章节图片
         time.sleep(4)
-        result = self.isMatchTemplateEx('chapter' + level[0] + '.png')
+        result = self.isMatchTemplateEx('chp' + level[0] + '.png',
+                                        rect=[[950, 1400], [240, 660]])
         # 判断是否是目标章节图,没有就进行循环
         while not result[0]:
             # 寻找其他图
-            for i_chapter in range(1, 8):
+            for i_chapter in range(1, 9):
                 # 判断图片
-                result = self.isMatchTemplateEx('chapter' + str(i_chapter) +
-                                                '.png')
+                result = self.isMatchTemplateEx('chp' + str(i_chapter) +
+                                                '.png',
+                                                rect=[[950, 1400], [240, 660]])
                 # 判断是否找到图片
                 if result[0]:
-                    # 找到了图片，进行位置判断
-                    if i_chapter > int(level[0]):
-                        # 找到的锚点图大于目标图,向右拉，往左移动
-                        self.swipeMouse(800, 450, 1400, 450, 2000)
-                    elif i_chapter < int(level[0]):
-                        # 如果小于，向左拉，往右移动
-                        self.swipeMouse(800, 450, 200, 450, 2000)
+                    # 判断原章节属于幻灭还是觉醒
+                    if int(level[0]) in [1, 2, 3]:
+                        if i_chapter in [1, 2, 3]:
+                            self.swipeMouse(1150, 450, 1550, 450, 2000)
+                        elif i_chapter in [4, 5, 6, 7, 8]:
+                            self.clickMouseAdb((80, 167))
+                    elif int(level[0]) in [4, 5, 6, 7, 8]:
+                        if i_chapter in [4, 5, 6, 7, 8]:
+                            self.swipeMouse(1150, 450, 1550, 450, 2000)
+                        elif i_chapter in [1, 2, 3]:
+                            self.clickMouseAdb((80, 551))
                     break
 
             # 滑动结束，再次判断目标图片
             time.sleep(4)
-            result = self.isMatchTemplateEx('chapter' + level[0] + '.png')
+            result = self.isMatchTemplateEx('chp' + level[0] + '.png',
+                                            rect=[[950, 1400], [240, 660]])
 
         # 寻找章节循环结束，找到目标图片，点击进入关卡选择
         time.sleep(4)
-        self.clickMouseAdbCenter(result[1], result[2])
+        self.clickMouseAdb((1200, 450))
         time.sleep(4)
 
         # 寻找当前关卡图
