@@ -494,56 +494,59 @@ class reroro:
     # 招募标签列表
     img_name_recruit_tag_list = [
         # 五星干员
-        ['tag_medical_agent.png', 'tag_support.png'],    # 医疗干员 支援   白面鸮 华法琳
-        ['tag_treat.png', 'tag_support.png'],            # 治疗 支援      白面鸮 华法琳
-        ['tag_support.png', 'tag_distant.png'],          # 支援 远程位    白面鸮 华法琳
-        ['tag_group_attack.png', 'tag_weaken.png'],      # 群攻 削弱      陨星
-        ['tag_weight_agent.png', 'tag_carry.png'],       # 重装干员 输出   雷蛇 火神
-        ['tag_carry.png', 'tag_protection.png'],         # 输出 防护      雷蛇 火神
-        ['tag_special_agent.png', 'tag_survival.png'],   # 特种干员 生存   狮蝎
-        ['tag_special_agent.png', 'tag_carry.png'],      # 特种干员 输出   崖心 狮蝎
-        ['tag_carry.png', 'tag_displace.png'],           # 输出 位移      崖心
-        ['tag_protection.png', 'tag_displace.png'],      # 防护 位移      可颂
-        ['tag_assist_agent.png', 'tag_carry.png'],       # 辅助干员 输出   真理
-        ['tag_carry.png', 'tag_slow_down.png',
-         'tag_distant.png'],                             # 输出 减速 远程位  真理 夜魔
-        ['tag_assist_agent.png', 'tag_weaken.png'],      # 辅助干员 削弱     初雪
-        ['tag_weight_agent.png', 'tag_displace.png'],    # 重装干员 位移     可颂
-        ['tag_survival.png', 'tag_protection.png'],      # 生存 防护        火神
-        ['tag_survival.png', 'tag_weight_agent.png'],    # 生存 重装干员     火神
-        ['tag_summon.png'],                              # 召唤             梅尔
-        ['tag_support.png', 'tag_const_recover.png'],    # 支援 费用回复     凛冬
-        ['tag_pioneer_agent.png', 'tag_support.png'],    # 先锋干员 支援     凛冬
-        ['tag_treat.png', 'tag_warlock_agent.png'],      # 治疗 术士干员     夜魔
-        ['tag_treat.png', 'tag_slow_down.png'],          # 治疗 减速         夜魔
-        ['tag_special_agent.png', 'tag_slow_down.png'],  # 特种干员 减速     食铁兽
-        ['tag_slow_down.png', 'tag_displace.png'],       # 减速 位移         食铁兽
-        ['tag_treat.png', 'tag_carry.png'],              # 治疗 输出         夜魔
+        ['tag_burst.png'],                               # 爆发        守林人
+        ['tag_kongchang.png'],                           # 控场        德克萨斯
+        ['tag_medical_agent.png', 'tag_support.png'],    # 医疗 支援   白面鸮 华法琳
+        ['tag_treat.png', 'tag_support.png'],            # 治疗 支援   白面鸮 华法琳
+        ['tag_support.png', 'tag_distant.png'],          # 支援 远程   白面鸮 华法琳
+        ['tag_weaken.png', 'tag_quick_resurgence.png'],  # 削弱 快活   槐虎
+        ['tag_weaken.png', 'tag_near.png'],              # 削弱 近战   槐虎
+        ['tag_weaken.png', 'tag_special_agent.png'],     # 削弱 特种   槐虎
+        ['tag_support.png', 'tag_const_recover.png'],    # 支援 回费   凛冬
+        ['tag_support.png', 'tag_pioneer_agent.png'],    # 支援 先锋   凛冬
+        ['tag_assist_agent.png', 'tag_weaken.png'],      # 辅助 削弱   初雪
+        ['tag_protection.png', 'tag_displace.png'],      # 防护 位移   可颂
+        ['tag_weight_agent.png', 'tag_displace.png'],    # 重装 位移   可颂
+        ['tag_group_attack.png', 'tag_weaken.png'],      # 群攻 削弱   陨星
+        ['tag_treat.png', 'tag_warlock_agent.png'],      # 治疗 术士   夜魔
         ['tag_warlock_agent.png', 'tag_carry.png',
-         'tag_slow_down.png'],                           # 术士 输出 减速    夜魔
+         'tag_slow_down.png'],                           # 术士 输出 减速  夜魔
+        ['tag_guards_agent.png', 'tag_protection.png'],  # 近卫 防护   星极
+        ['tag_carry.png', 'tag_protection.png'],         # 输出 防护   雷蛇 火神
+        ['tag_weight_agent.png', 'tag_carry.png'],       # 重装 输出   雷蛇 火神
+        ['tag_survival.png', 'tag_weight_agent.png'],    # 生存 重装   火神
+        ['tag_assist_agent.png', 'tag_carry.png'],       # 辅助 输出   真理
+        ['tag_treat.png', 'tag_slow_down.png'],          # 治疗 减速   夜魔
+        ['tag_treat.png', 'tag_carry.png'],              # 治疗 输出   夜魔
+        ['tag_survival.png', 'tag_protection.png'],      # 生存 防护   火神
+        ['tag_special_agent.png', 'tag_slow_down.png'],  # 特种 减速   食铁兽
+        ['tag_special_agent.png', 'tag_carry.png'],      # 特种 输出   崖心 狮蝎
+        ['tag_special_agent.png', 'tag_survival.png'],   # 特种 生存   狮蝎
+        ['tag_slow_down.png', 'tag_displace.png'],       # 减速 位移   食铁兽
+        ['tag_carry.png', 'tag_displace.png'],           # 输出 位移   崖心
+        ['tag_summon.png'],                              # 召唤        梅尔
         # 特殊标签 支援机械 小车
-        ['tag_support_mechanical.png',
-         'tag_special_agent.png'],                       # 支援机械 特种      爆炸小车
-        ['tag_support_mechanical.png',
-         'tag_medical_agent.png'],                       # 支援机械 医疗      医疗小车
-        ['tag_support_mechanical.png',
-         'tag_guards_agent.png'],                        # 支援机械 近卫      近卫小车
-        ['tag_support_mechanical.png'],                  # 支援机械          小车
+        ['tag_support_mechanical.png', 'tag_special_agent.png'], # 支援机械 特种  爆炸小车
+        ['tag_support_mechanical.png', 'tag_medical_agent.png'], # 支援机械 医疗  医疗小车
+        ['tag_support_mechanical.png', 'tag_guards_agent.png'],  # 支援机械 近卫  近卫小车
+        ['tag_support_mechanical.png'],                          # 支援机械       小车
         # 四星干员
-        ['tag_weaken.png'],                              # 削弱            夜烟 流行
-        ['tag_special_agent.png'],                       # 特种干员        砾 暗索 阿消
-        ['tag_quick_resurgence.png'],                    # 快速复活        砾
-        ['tag_displace.png'],                            # 位移           暗索 阿消
-        ['tag_survival.png', 'tag_snipe_agent.png'],     # 生存 狙击干员    杰西卡
-        ['tag_survival.png', 'tag_distant.png'],         # 生存 远程位     杰西卡
-        ['tag_snipe_agent.png', 'tag_slow_down.png'],    # 狙击干员 减速   白雪
-        ['tag_group_attack.png',
-         'tag_slow_down.png'],                           # 群攻 减速       格雷伊 白雪
-        ['tag_carry.png', 'tag_slow_down.png'],          # 输出 减速       霜叶
-        ['tag_guards_agent.png', 'tag_slow_down.png'],   # 近卫干员 减速   霜叶
-        ['tag_near.png', 'tag_slow_down.png'],           # 近战位 减速     霜叶
-        ['tag_warlock_agent.png', 'tag_slow_down.png'],  # 术士干员 减速   格雷伊
-        ['tag_support.png'],                             # 支援           杜宾
+        ['tag_pioneer_agent.png', 'tag_treat.png'],      # 先锋 治疗   桃金娘
+        ['tag_snipe_agent.png', 'tag_slow_down.png'],    # 狙击 减速   白雪
+        ['tag_survival.png', 'tag_snipe_agent.png'],     # 生存 狙击   杰西卡
+        ['tag_survival.png', 'tag_distant.png'],         # 生存 远程   杰西卡
+        ['tag_warlock_agent.png', 'tag_slow_down.png'],  # 术士 减速   格雷伊
+        ['tag_guards_agent.png', 'tag_slow_down.png'],   # 近卫 减速   霜叶
+        ['tag_near.png', 'tag_slow_down.png'],           # 近战 减速   霜叶
+        ['tag_const_recover.png', 'tag_treat.png'],      # 回费 治疗   桃金娘
+        ['tag_carry.png', 'tag_slow_down.png'],          # 输出 减速   霜叶
+        ['tag_group_attack.png', 'tag_slow_down.png'],   # 群攻 减速   格雷伊 白雪
+        ['tag_weaken.png'],                              # 削弱        夜烟 流行
+        ['tag_special_agent.png'],                       # 特种        砾 暗索 阿消
+        ['tag_quick_resurgence.png'],                    # 快活        砾
+        ['tag_displace.png'],                            # 位移        暗索 阿消
+        ['tag_near.png', 'tag_slow_down.png'],           # 近战 减速   霜叶
+        ['tag_support.png'],                             # 支援        杜宾
     ]
 
     # 初始化函数
