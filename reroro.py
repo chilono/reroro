@@ -2843,11 +2843,12 @@ class reroro:
         # 资源筹备分辨
         if level[:2] == 'ls':
             # 经验本
-            result = self.isMatchTemplateEx(self.img_name_fight_resource_exper)
+            result = self.isMatchTemplateEx(self.img_name_fight_resource_exper,
+                                            threshold=0.9)
             if result[0]:
                 self.clickMouseAdbCenter(result[1], result[2])
             else:
-                self.swipeMouse(800, 450, 0, 450)
+                self.swipeMouse(800, 450, 1600, 450)
                 time.sleep(4)
                 result = self.isMatchTemplateEx(
                     self.img_name_fight_resource_exper)
@@ -2859,40 +2860,43 @@ class reroro:
             if result[0]:
                 self.clickMouseAdbCenter(result[1], result[2])
             else:
-                self.swipeMouse(800, 450, 0, 450)
+                self.swipeMouse(800, 450, 1600, 450)
                 time.sleep(4)
                 result = self.isMatchTemplateEx(
                     self.img_name_fight_resource_carbon)
                 self.clickMouseAdbCenter(result[1], result[2])
         if level[:2] == 'ce':
             # 钱本
-            result = self.isMatchTemplateEx(self.img_name_fight_resource_money)
+            result = self.isMatchTemplateEx(self.img_name_fight_resource_money,
+                                            threshold=0.9)
             if result[0]:
                 self.clickMouseAdbCenter(result[1], result[2])
             else:
-                self.swipeMouse(800, 450, 0, 450)
+                self.swipeMouse(800, 450, 1600, 450)
                 time.sleep(4)
                 result = self.isMatchTemplateEx(
                     self.img_name_fight_resource_money)
                 self.clickMouseAdbCenter(result[1], result[2])
         if level[:2] == 'ap':
             # 采购凭证
-            result = self.isMatchTemplateEx(self.img_name_fight_resource_purch)
+            result = self.isMatchTemplateEx(self.img_name_fight_resource_purch,
+                                            threshold=0.9)
             if result[0]:
                 self.clickMouseAdbCenter(result[1], result[2])
             else:
-                self.swipeMouse(800, 450, 0, 450)
+                self.swipeMouse(800, 450, 1600, 450)
                 time.sleep(4)
                 result = self.isMatchTemplateEx(
                     self.img_name_fight_resource_purch)
                 self.clickMouseAdbCenter(result[1], result[2])
         if level[:2] == 'ca':
             # 技能书
-            result = self.isMatchTemplateEx('fight_resource_ca.png')
+            result = self.isMatchTemplateEx('fight_resource_ca.png',
+                                            threshold=0.9)
             if result[0]:
                 self.clickMouseAdbCenter(result[1], result[2])
             else:
-                self.swipeMouse(800, 450, 0, 450)
+                self.swipeMouse(800, 450, 1600, 450)
                 time.sleep(4)
                 result = self.isMatchTemplateEx(
                     'fight_resource_ca.png')
