@@ -2921,6 +2921,10 @@ class reroro:
         self.clickMouseAdbCenter(result[1], result[2])
         time.sleep(2)
 
+        # 拉动芯片图
+        self.swipeMouse(800, 450, 0, 450)
+        time.sleep(2)
+
         # 芯片搜索分辨
         if level[3] == 'a':
             result = self.isMatchTemplateEx(self.img_name_pr_a)
@@ -2934,7 +2938,7 @@ class reroro:
         if level[3] == 'd':
             result = self.isMatchTemplateEx(self.img_name_pr_d)
             self.clickMouseAdbCenter(result[1], result[2])
-        time.sleep(2)
+        time.sleep(4)
 
         # 关卡选择
         self.clickMouseAdb(self.level_chip_list[level[5]])
